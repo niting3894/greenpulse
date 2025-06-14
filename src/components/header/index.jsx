@@ -31,7 +31,7 @@ export default function Header() {
               <img
                 src="/assets/images/logo.png"
                 alt="Tracyle Logo"
-                className="w-[130px] h-auto"
+                className="w-[150px] h-auto"
               />
             </div>
           </Link>
