@@ -1,7 +1,17 @@
 import Image from "next/image";
 import Link from "next/link";
-import { FaFacebookF, FaTimes, FaLinkedinIn, FaTwitter } from "react-icons/fa";
+import {
+  FaFacebookF,
+  FaTimes,
+  FaLinkedinIn,
+  FaTwitter,
+  FaPhoneAlt,
+  FaGlobe,
+  FaMapMarkerAlt,
+} from "react-icons/fa";
 import { FiChevronRight } from "react-icons/fi";
+import { MdEmail } from "react-icons/md";
+import { HiOutlineMail } from "react-icons/hi";
 
 export default function Footer() {
   return (
@@ -35,7 +45,7 @@ export default function Footer() {
       {/* Footer Main Content */}
       <div className="max-w-7xl mx-auto flex flex-col lg:flex-row justify-between gap-20">
         {/* Logo + Description */}
-        <div className="space-y-8 max-w-lg">
+        <div className="space-y-4 max-w-sm">
           <Image
             src="/assets/images/logo.png"
             alt="Tracyle Logo"
@@ -43,10 +53,13 @@ export default function Footer() {
             height={60}
             className="object-contain"
           />
-          <p className="text-[#E9E9E9] leading-relaxed">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit
-            tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo.
-          </p>
+          <div>
+            <h2 className="text-3xl mb-3">Let’s Build a Greener Today </h2>
+            <p className="text-[#E9E9E9] leading-relaxed">
+              Whether you are a startup, MNC, or brand owner, we simplify
+              compliance while accelerating your sustainability goals.
+            </p>
+          </div>
           <div className="flex space-x-6 text-xl">
             <Link href="#" className="hover:text-[#69cf3d]">
               <FaFacebookF />
@@ -64,13 +77,13 @@ export default function Footer() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 w-full">
           {/* Quick Links */}
           <div>
-            <h4 className="text-3xl font-[600] mb-4">Quick Links</h4>
+            <h4 className="text-3xl font-[600] mb-4">Company</h4>
             <ul className="space-y-3 text-sm">
-              {["About", "Services", "Case Studies", "FAQ's"].map((text, i) => (
+              {["about", "services", "blog", "contact"].map((text, i) => (
                 <li key={i}>
                   <Link
-                    href="#"
-                    className="flex items-center gap-2 text-[16px] text-[#E9E9E9] hover:text-[#69cf3d]"
+                    href={`/${text}`}
+                    className="flex items-center gap-2 text-[16px] text-[#E9E9E9] hover:text-[#69cf3d] capitalize"
                   >
                     <FiChevronRight className="text-2xl" />
                     {text}
@@ -82,17 +95,12 @@ export default function Footer() {
 
           {/* Useful Links */}
           <div>
-            <h4 className="text-3xl font-[600] mb-4">Useful Links</h4>
+            <h4 className="text-3xl font-[600] mb-4">Legal</h4>
             <ul className="space-y-3 text-sm">
-              {[
-                "Privacy and Policy",
-                "Terms and Conditions",
-                "Disclaimer",
-                "Support",
-              ].map((text, i) => (
+              {["Privacy and Policy", "Terms and Conditions"].map((text, i) => (
                 <li key={i}>
                   <Link
-                    href="#"
+                    href={`/${text}`}
                     className="flex items-center gap-2 text-[16px] text-[#E9E9E9] hover:text-[#69cf3d]"
                   >
                     <FiChevronRight className="text-2xl" />
@@ -105,15 +113,23 @@ export default function Footer() {
 
           {/* Working Hours */}
           <div>
-            <h4 className="text-3xl font-[600] mb-4">Working Hour</h4>
-            <ul className="space-y-4 text-sm">
-              <li>
-                <p>Monday – Saturday</p>
-                <p className="text-gray-300">08:00 - 15:00</p>
+            <h4 className="text-3xl font-[600] mb-4">Contact Us</h4>
+            <ul className="space-y-4 text-[16px] text-[#E9E9E9]">
+              <li className="flex items-center gap-2">
+                <FaPhoneAlt className="text-lg" />
+                <p>+91-8800282830</p>
               </li>
-              <li>
-                <p>Sunday</p>
-                <p className="text-gray-300">10:00 - 12:00</p>
+              <li className="flex items-center gap-2">
+                <MdEmail className="text-2xl" />
+                <p className="break-all">deepakgupta@greenpulsesolution.com</p>
+              </li>
+              <li className="flex items-center gap-2">
+                <FaGlobe className="text-lg" />
+                <p>www.greenpulsesolution.com</p>
+              </li>
+              <li className="flex items-center gap-2">
+                <FaMapMarkerAlt className="text-lg" />
+                <p>Delhi NCR | PAN India Operations</p>
               </li>
             </ul>
           </div>

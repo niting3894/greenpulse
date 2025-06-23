@@ -1,29 +1,55 @@
 "use client";
 
+import { useState } from "react";
 import Banner from "@/components/Banner";
 import FaqSection from "@/components/Section/FaqSection";
-import { useState } from "react";
+import { useFormik } from "formik";
+import * as Yup from "yup";
+import { ContactUsApi } from "@/api/setting";
+import { toast } from "react-toastify";
+import Loader from "@/components/Loader/Loader";
 
 export default function ContactPage() {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    phone: "",
-    subject: "",
-    message: "",
+  const [loading, setLoading] = useState(false);
+
+  const formik = useFormik({
+    initialValues: {
+      name: "",
+      email: "",
+      phone: "",
+      subject: "",
+      message: "",
+    },
+    validationSchema: Yup.object({
+      name: Yup.string().required("Name is required"),
+      email: Yup.string()
+        .matches(
+          /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+          "Please enter a valid email address (e.g., example@domain.com)"
+        )
+        .matches(
+          /.+@.+\..+$/,
+          "Invalid email address. Must contain a '.' after '@'"
+        )
+        .required("Email is required"),
+      phone: Yup.string().required("Phone number is required"),
+      subject: Yup.string().required("Subject is required"),
+      message: Yup.string().required("Message is required"),
+    }),
+    onSubmit: async (values, { resetForm }) => {
+      const { ...payload } = values;
+      setLoading(true);
+      ContactUsApi(payload).then((data) => {
+        setLoading(false);
+        if (data?.code === 1) {
+          toast.success("Your request has been submitted successfully.");
+          resetForm();
+        } else {
+          toast.error(data.message);
+        }
+      });
+    },
   });
-
-  const handleChange = (e) => {
-    setFormData((prev) => ({
-      ...prev,
-      [e.target.name]: e.target.value,
-    }));
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log(formData); // handle form submission
-  };
 
   return (
     <>
@@ -39,8 +65,12 @@ export default function ContactPage() {
 
           <div className="flex flex-col lg:flex-row gap-12 lg:gap-16">
             {/* Form */}
-            <form onSubmit={handleSubmit} className="w-full lg:w-1/2 space-y-6">
+            <form
+              onSubmit={formik.handleSubmit}
+              className="w-full lg:w-1/2 space-y-6"
+            >
               <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                {/* Name */}
                 <div>
                   <label
                     htmlFor="name"
@@ -51,21 +81,23 @@ export default function ContactPage() {
                   <input
                     id="name"
                     name="name"
-                    value={formData.name}
-                    onChange={handleChange}
+                    {...formik.getFieldProps("name")}
                     placeholder="Insert Name"
                     className={`w-full border border-gray-200 px-4 py-3 rounded-md 
-        placeholder:text-gray-400 placeholder:text-sm transition 
-        focus:outline-none focus:border-[#69CF3D] text-gray-900
-        ${
-          formData.name
-            ? "bg-white"
-            : "bg-[#f8eee6] hover:bg-white focus:bg-white"
-        }
-      `}
-                    required
+                      placeholder:text-gray-400 placeholder:text-sm transition 
+                      focus:outline-none focus:border-[#69CF3D] text-gray-900
+                      ${
+                        formik.values.name
+                          ? "bg-white"
+                          : "bg-[#f8eee6] hover:bg-white focus:bg-white"
+                      }`}
                   />
+                  {formik.touched.name && formik.errors.name && (
+                    <p className="text-red-500 text-xs">{formik.errors.name}</p>
+                  )}
                 </div>
+
+                {/* Email */}
                 <div>
                   <label
                     htmlFor="email"
@@ -76,19 +108,25 @@ export default function ContactPage() {
                   <input
                     id="email"
                     type="email"
-                    name="email"
-                    value={formData.email}
-                    onChange={handleChange}
+                    {...formik.getFieldProps("email")}
                     placeholder="Insert Email Address"
-                    required
                     className={`w-full border border-gray-200 px-4 py-3 rounded-md 
-    placeholder:text-gray-400 placeholder:text-sm transition 
-    focus:outline-none focus:border-[#69CF3D] text-gray-900 
-    ${
-      formData.email ? "bg-white" : "bg-[#f8eee6] hover:bg-white focus:bg-white"
-    }`}
+                      placeholder:text-gray-400 placeholder:text-sm transition 
+                      focus:outline-none focus:border-[#69CF3D] text-gray-900
+                      ${
+                        formik.values.email
+                          ? "bg-white"
+                          : "bg-[#f8eee6] hover:bg-white focus:bg-white"
+                      }`}
                   />
+                  {formik.touched.email && formik.errors.email && (
+                    <p className="text-red-500 text-xs">
+                      {formik.errors.email}
+                    </p>
+                  )}
                 </div>
+
+                {/* Phone */}
                 <div>
                   <label
                     htmlFor="phone"
@@ -99,17 +137,25 @@ export default function ContactPage() {
                   <input
                     id="phone"
                     name="phone"
-                    value={formData.phone}
-                    onChange={handleChange}
+                    {...formik.getFieldProps("phone")}
                     placeholder="Insert Phone Number"
-                    className={`w-full border border-gray-200 px-4 py-3 rounded-md placeholder:text-gray-400 placeholder:text-sm transition focus:outline-none focus:border focus:border-[#69CF3D] text-gray-900  ${
-                      formData.phone
-                        ? "bg-white"
-                        : "bg-[#f8eee6] hover:bg-white focus:bg-white"
-                    }
-      `}
+                    className={`w-full border border-gray-200 px-4 py-3 rounded-md 
+                      placeholder:text-gray-400 placeholder:text-sm transition 
+                      focus:outline-none focus:border-[#69CF3D] text-gray-900
+                      ${
+                        formik.values.phone
+                          ? "bg-white"
+                          : "bg-[#f8eee6] hover:bg-white focus:bg-white"
+                      }`}
                   />
+                  {formik.touched.phone && formik.errors.phone && (
+                    <p className="text-red-500 text-xs">
+                      {formik.errors.phone}
+                    </p>
+                  )}
                 </div>
+
+                {/* Subject */}
                 <div>
                   <label
                     htmlFor="subject"
@@ -120,20 +166,26 @@ export default function ContactPage() {
                   <input
                     id="subject"
                     name="subject"
-                    value={formData.subject}
-                    onChange={handleChange}
+                    {...formik.getFieldProps("subject")}
                     placeholder="Subject"
-                    className={`w-full border border-gray-200 px-4 py-3 rounded-md placeholder:text-gray-400 placeholder:text-sm transition focus:outline-none focus:border focus:border-[#69CF3D] text-gray-900
-                     ${
-                       formData.subject
-                         ? "bg-white"
-                         : "bg-[#f8eee6] hover:bg-white focus:bg-white"
-                     }
-      `}
+                    className={`w-full border border-gray-200 px-4 py-3 rounded-md 
+                      placeholder:text-gray-400 placeholder:text-sm transition 
+                      focus:outline-none focus:border-[#69CF3D] text-gray-900
+                      ${
+                        formik.values.subject
+                          ? "bg-white"
+                          : "bg-[#f8eee6] hover:bg-white focus:bg-white"
+                      }`}
                   />
+                  {formik.touched.subject && formik.errors.subject && (
+                    <p className="text-red-500 text-xs">
+                      {formik.errors.subject}
+                    </p>
+                  )}
                 </div>
               </div>
 
+              {/* Message */}
               <div>
                 <label
                   htmlFor="message"
@@ -144,25 +196,32 @@ export default function ContactPage() {
                 <textarea
                   id="message"
                   name="message"
-                  value={formData.message}
-                  onChange={handleChange}
-                  placeholder="Your Message"
                   rows={5}
-                  className={`w-full border border-gray-200 px-4 py-3 rounded-md placeholder:text-gray-400 placeholder:text-sm transition focus:outline-none focus:border focus:border-[#69CF3D] text-gray-900  ${
-                    formData.message
-                      ? "bg-white"
-                      : "bg-[#f8eee6] hover:bg-white focus:bg-white"
-                  }
-       resize-y`}
-                  required
+                  {...formik.getFieldProps("message")}
+                  placeholder="Your Message"
+                  className={`w-full border border-gray-200 px-4 py-3 rounded-md 
+                    placeholder:text-gray-400 placeholder:text-sm transition 
+                    focus:outline-none focus:border-[#69CF3D] text-gray-900
+                    ${
+                      formik.values.message
+                        ? "bg-white"
+                        : "bg-[#f8eee6] hover:bg-white focus:bg-white"
+                    }
+                    resize-y`}
                 />
+                {formik.touched.message && formik.errors.message && (
+                  <p className="text-red-500 text-xs">
+                    {formik.errors.message}
+                  </p>
+                )}
               </div>
 
               <button
                 type="submit"
                 className="bg-[#69cf3d] hover:bg-[#2A4E1A] hover:text-white text-black font-semibold py-4 px-7 text-sm rounded shadow transition"
+                disabled={loading}
               >
-                Send Message
+                {loading ? <Loader height="25" /> : "Send Message"}
               </button>
             </form>
 

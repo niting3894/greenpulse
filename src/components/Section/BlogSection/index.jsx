@@ -1,4 +1,9 @@
+"use client";
+
 import BlogCard from "@/components/Cards/BlogCard";
+import { getBlogList } from "@/redux/slices/BlogList";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
 const blogs = [
   {
@@ -19,6 +24,25 @@ const blogs = [
 ];
 
 export default function BlogSection({ paddingClass }) {
+  const dispatch = useDispatch();
+  const [page, setPage] = useState(1);
+  const [activePage, setActivePage] = useState(6);
+  const [search, setSearch] = useState("");
+
+  const { BlogList, loadingBlog, totalCount } = useSelector(
+    (state) => state.BlogListData
+  );
+
+  useEffect(() => {
+    dispatch(
+      getBlogList({
+        page: page,
+        limit: activePage,
+        search: search
+      })
+    );
+  }, [page, activePage, search, dispatch]);
+
   return (
     <section
       className={`bg-[#f9f7f2] ${

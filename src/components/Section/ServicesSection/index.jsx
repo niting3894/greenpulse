@@ -2,8 +2,29 @@
 
 import ServiceCard from "@/components/Cards/ServiceCard";
 import FadeUpSection from "../FadeUpSection";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect, useState } from "react";
+import { getServiceList } from "@/redux/slices/ServiceList";
 
 export default function ServicesSection() {
+    const dispatch = useDispatch();
+  const [page, setPage] = useState(1);
+  const [activePage, setActivePage] = useState(6);
+  const [search, setSearch] = useState("");
+
+  const { ServiceList, loadingBlog, totalCount } = useSelector(
+    (state) => state.ServiceListData
+  );
+
+  useEffect(() => {
+    dispatch(
+      getServiceList({
+        page: page,
+        limit: activePage,
+        search: search
+      })
+    );
+  }, [page, activePage, search, dispatch]);
   return (
     <section className="bg-[#f8eee6] text-gray-900 py-20 px-6 md:px-20">
       <div className="max-w-7xl mx-auto">

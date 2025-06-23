@@ -1,3 +1,5 @@
+"use client"
+
 import Image from "next/image";
 import Link from "next/link";
 import { FaArrowRight, FaCheck } from "react-icons/fa";
@@ -6,8 +8,28 @@ import FaqSection from "@/components/Section/FaqSection";
 import ServicesBox from "@/components/ServiceDetail/ServicesBox";
 import CTABox from "@/components/ServiceDetail/CTABox";
 import ServiceContent from "@/components/ServiceDetail/ServiceContent";
+import { useParams } from "next/navigation";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect, useState } from "react";
+import { getserviceListDetail } from "@/redux/slices/ServiceListDetail";
 
 export default function ServicesDetailPage() {
+  const { id } = useParams();
+  const dispatch = useDispatch();
+  const [page, setPage] = useState(1);
+  const [search, setSearch] = useState("");
+  const [activePage, setActivePage] = useState(10);
+
+  const { ServiceListDetail, loadingDetail } = useSelector(
+    (state) => state.ServiceListDetailData
+  );
+
+  useEffect(() => {
+    if (id) {
+      dispatch(getserviceListDetail({ id }));
+    }
+  }, [dispatch, id]);
+
   const services = [
     "Residential Waste Collection",
     "Commercial Waste Disposal",

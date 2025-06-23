@@ -1,7 +1,10 @@
 "use client";
 
 import Banner from "@/components/Banner";
+import { getBlogListDetail } from "@/redux/slices/BlogListDetail";
 import Image from "next/image";
+import { useParams } from "next/navigation";
+import { useEffect, useState } from "react";
 import {
   FaCheckCircle,
   FaFacebookF,
@@ -9,10 +12,11 @@ import {
   FaLinkedinIn,
   FaCheck,
 } from "react-icons/fa";
+import { useDispatch, useSelector } from "react-redux";
 
 const ParagraphBlock = ({ paragraphs }) => (
   <div className="space-y-6 text-base leading-relaxed text-[#8D8D8D]">
-    {paragraphs.map((text, idx) => (
+    {paragraphs.map((text, idx)   => (
       <p key={idx}>{text}</p>
     ))}
   </div>
@@ -55,6 +59,22 @@ const FooterTags = () => (
 );
 
 export default function BlogDetailPage() {
+    const { id } = useParams();
+  const dispatch = useDispatch();
+  const [page, setPage] = useState(1);
+  const [search, setSearch] = useState("");
+  const [activePage, setActivePage] = useState(10);
+
+  const { BlogListDetail, loadingDetail } = useSelector(
+    (state) => state.BlogListDetailData
+  );
+
+  useEffect(() => {
+    if (id) {
+      dispatch(getBlogListDetail({ id }));
+    }
+  }, [dispatch, id]);
+
   return (
     <>
       <Banner title="Blog Detail" backgroundImage="/assets/images/hero-bg.jpg" />
