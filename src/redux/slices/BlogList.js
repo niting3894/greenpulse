@@ -1,28 +1,21 @@
-import { BASE_API_URL, TOKEN_NAME } from "@/until";
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-import Cookies from "universal-cookie";
 
 export const getBlogList = createAsyncThunk(
   "BlogList",
   async (obj, { rejectWithValue }) => {
-    const cookie = new Cookies();
-    const token = cookie.get(TOKEN_NAME);
-
     try {
-      const response = await axios({
-        method: "get",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-          Authorization: token,
+      const response = await axios.get("/api/blogs", {
+        params: {
+          page: obj?.page,
+          limit: obj?.limit,
+          search: obj?.search,
         },
-        url: `${BASE_API_URL}blogs?page=${obj?.page}&limit=${obj?.limit}&search=${obj?.search}`,
       });
 
       return {
-        data: response.data.data,
-        count: response.data.count,
+        data: response.data.details,
+        count: response.data.meta_data?.pagination_info?.count || 0,
       };
     } catch (error) {
       return rejectWithValue(error.response?.data?.message || "Failed to fetch data");
@@ -30,13 +23,12 @@ export const getBlogList = createAsyncThunk(
   }
 );
 
-
 const BlogList = createSlice({
   name: "BlogList",
   initialState: {
     BlogList: [],
     loadingBlog: false,
-    totalCount: 0, 
+    totalCount: 0,
     error: null,
   },
   extraReducers: (builder) => {
@@ -56,6 +48,5 @@ const BlogList = createSlice({
       });
   },
 });
-
 
 export default BlogList.reducer;

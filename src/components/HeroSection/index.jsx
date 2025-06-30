@@ -23,19 +23,19 @@ export default function HeroSection() {
           {/* Left Text Block */}
           <FadeUpSection>
             <div className="text-white w-full md:max-w-6xl">
-              <h2 className="text-xs sm:text-base font-semibold uppercase mb-7 tracking-wider">
-                Welcome to Tracyle
+              <h2 className="text-xs sm:text-base font-semibold uppercase mb-5 tracking-wider">
+                Welcome to Green Pulse Solution The Heart of Sustainability,
               </h2>
-              <h1 className="text-3xl sm:text-5xl md:text-[5rem] font-bold leading-[1.40] md:leading-[1.15] mb-0">
-                Efficient & Sustainable Waste
+              <h1 className="text-3xl sm:text-5xl md:text-[4rem] font-bold leading-[1.40] md:leading-[1.15] mb-0">
+                Empowering businesses with end-to-end
                 <br className="hidden md:block" />
-                Management Solutions
+                waste and compliance solutions.
               </h1>
             </div>
           </FadeUpSection>
 
           {/* Right CTA Block */}
-          <FadeUpSection>
+          {/* <FadeUpSection>
             <div className=" -full md:max-w-[15rem] text-white md:pb-2">
               <p className="mb-6 md:mb-4 text-base leading-relaxed px-5 sm:px-0">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit
@@ -48,7 +48,7 @@ export default function HeroSection() {
                 Get Started
               </Link>
             </div>
-          </FadeUpSection>
+          </FadeUpSection> */}
         </div>
       </div>
     </section>

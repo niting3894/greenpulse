@@ -6,29 +6,54 @@ import { AnimatePresence, motion } from "framer-motion";
 
 const faqs = [
   {
-    question: "What types of waste do you handle?",
+    question: "What is EPR (Extended Producer Responsibility) Compliance?",
     answer:
-      "We manage a wide range of waste, including household, commercial, industrial, and hazardous waste. Our team ensures proper disposal and recycling based on environmental guidelines.",
+      "EPR is a legal framework introduced by the Government of India that makes producers, importers, and brand owners (PIBOs) responsible for the end-of-life management of their products and packaging. This includes collection, recycling, and environmentally sound disposal. Green Pulse Solution Pvt. Ltd. offers end-to-end EPR compliance services across all waste categories.",
   },
   {
-    question: "How can I schedule a waste pickup?",
+    question: "Who needs to comply with EPR in India?",
     answer:
-      "You can schedule a waste pickup by contacting our support team or using the booking feature on our website.",
+      "Businesses involved in manufacturing, importing, or selling products that generate Plastic waste, E-waste, Batteries, Tyre waste, Used Oil are required to register under EPR with CPCB/SPCB and fulfil their waste management responsibilities.",
   },
   {
-    question: "Do you provide recycling services?",
+    question: "How can Green Pulse Solution help with EPR Compliance?",
     answer:
-      "Yes, we offer comprehensive recycling services for various materials, including paper, plastic, metal, and electronics.",
+      "We assist with:\n• CPCB registration\n• Waste mapping & documentation\n• Reverse logistics network setup\n• Recycler tie-ups\n• Quarterly & annual reporting\n• Audit support and ESG alignment\nOur process ensures full compliance with the latest CPCB norms.",
   },
   {
-    question: "What are the benefits of proper waste management?",
+    question: "What are the penalties for non-compliance with EPR guidelines?",
     answer:
-      "Proper waste management helps reduce pollution, conserve resources, and protect public health and the environment.",
+      "Non-compliance may result in heavy fines, legal action, cancellation of licenses, and blacklisting from CPCB’s portal. It can also damage a brand's reputation and halt operations.",
   },
   {
-    question: "How do you ensure eco-friendly waste disposal?",
+    question: "Do you offer services PAN India?",
     answer:
-      "We follow strict environmental guidelines and partner with certified facilities to ensure safe and eco-friendly waste disposal.",
+      "Yes. Green Pulse Solution operates across India, offering compliance, waste collection, and recycling services in all major states and union territories.",
+  },
+  {
+    question: "What documents are required for CPCB registration under EPR?",
+    answer:
+      "Typically required documents include:\n• Company PAN & GST\n• Incorporation certificate\n• Product details\n• Waste generation estimate\n• Action plan for waste management\n• Agreements with recyclers/logistics partners\nWe assist with preparing and uploading these documents as per CPCB’s portal requirements.",
+  },
+  {
+    question: "How does EPR support ESG (Environmental, Social, Governance) goals?",
+    answer:
+      "EPR plays a crucial role in ESG by:\n• Reducing environmental impact\n• Promoting responsible production and recycling\n• Ensuring transparency through verified reports\n• Supporting social causes by integrating informal sector waste workers\nWe help our clients align their EPR actions with ESG frameworks like BRSR, GRI, and CDP.",
+  },
+  {
+    question: "Do you provide all waste EPR credits or offset solutions for the Compliance submission?",
+    answer:
+      "Yes. We offer all waste related EPR credits compliance mechanism that allow brands to offset their waste generation by financing equivalent waste recycling, verified by CPCB-registered entities.",
+  },
+  {
+    question: "What types of waste categories do you manage under EPR?",
+    answer:
+      "We cover:\n• Plastic Waste Management (PWM)\n• E-Waste Management\n• Battery Waste Management (BWM)\n• Tyre Waste Management\n• Multilayered Packaging (MLP)\n• Used Oil Recycling.",
+  },
+  {
+    question: "How can I get started with your compliance services?",
+    answer:
+      "Simply [Contact Us] through our inquiry form or call our helpline. Our team will schedule a free consultation to understand your business type, waste generation, and required compliance needs. From there, we’ll create a tailored roadmap to ensure full compliance and sustainable waste management.",
   },
 ];
 
@@ -47,13 +72,9 @@ export default function FaqSection() {
           <h6 className="uppercase font-semibold text-[#2A4E1A] tracking-wider mb-6 sm:mb-5 text-center md:text-left">
             FAQ
           </h6>
-          <h2 className="text-3xl sm:text-4xl md:text-6xl font-[600] text-gray-900 mb-6 leading-tight">
-            Frequently Ask Questions
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-[600] text-gray-900 mb-6 leading-tight">
+            Frequently Asked Questions (FAQs)
           </h2>
-          <p className="text-[#8D8D8D] text-base">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit
-            tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo.
-          </p>
         </div>
 
         {/* Right Side (Accordion) */}
@@ -92,7 +113,7 @@ export default function FaqSection() {
                     id={`faq-content-${index}`}
                     aria-labelledby={`faq-header-${index}`}
                   >
-                    <p className="mt-4 text-[#8D8D8D] text-base border-t border-lime-500 pt-6">
+                    <p className="mt-4 text-[#8D8D8D] text-base border-t border-lime-500 pt-6 whitespace-pre-line">
                       {faq.answer}
                     </p>
                   </motion.div>
@@ -105,3 +126,4 @@ export default function FaqSection() {
     </section>
   );
 }
+

@@ -20,7 +20,7 @@ export default function Banner({ title, backgroundImage }) {
 
       {/* Overlay Title */}
       <div className="relative z-10 flex items-end h-full px-6 md:px-24 pb-16 md:pb-24">
-        <h1 className="text-white text-4xl md:text-8xl font-[600]">{title}</h1>
+        <h1 className="text-white text-4xl md:text-6xl font-[600] max-w-4xl">{title}</h1>
       </div>
     </section>
   );

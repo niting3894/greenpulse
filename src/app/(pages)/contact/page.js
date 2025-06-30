@@ -17,8 +17,8 @@ export default function ContactPage() {
       name: "",
       email: "",
       phone: "",
-      subject: "",
       message: "",
+      subject: "",
     },
     validationSchema: Yup.object({
       name: Yup.string().required("Name is required"),
@@ -32,22 +32,34 @@ export default function ContactPage() {
           "Invalid email address. Must contain a '.' after '@'"
         )
         .required("Email is required"),
-      phone: Yup.string().required("Phone number is required"),
-      subject: Yup.string().required("Subject is required"),
+      phone: Yup.string()
+        .matches(/^\d{10}$/, "Phone number must be exactly 10 digits")
+        .required("Phone number is required"),
       message: Yup.string().required("Message is required"),
     }),
     onSubmit: async (values, { resetForm }) => {
-      const { ...payload } = values;
+      const payload = {
+        email: values.email,
+        mobile_no: values.phone.slice(0, 10), // match API naming
+        message: values.message,
+      };
+
       setLoading(true);
-      ContactUsApi(payload).then((data) => {
+
+      try {
+        const data = await ContactUsApi(payload);
         setLoading(false);
-        if (data?.code === 1) {
+
+        if (data?.status_code === 201) {
           toast.success("Your request has been submitted successfully.");
           resetForm();
         } else {
-          toast.error(data.message);
+          toast.error(data?.message || "Something went wrong.");
         }
-      });
+      } catch (err) {
+        setLoading(false);
+        toast.error("An error occurred while submitting the form.");
+      }
     },
   });
 

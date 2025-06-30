@@ -4,20 +4,23 @@ import { BASE_API_URL, TOKEN_NAME } from "../until";
 import axios from "axios";
 var querystring = require("querystring");
 
-export const postRawData = async (url = "", data = {}) => {
+export default async function handler(req, res) {
   try {
-    const token = await Cookies.get(TOKEN_NAME);
-
-    const response = await axios.post(BASE_API_URL + url, data, {
-      headers: { Authorization: token ? token : "" },
+    const response = await fetch('http://www.greenpulsesolution.com/api/v1/pages/contact-us/', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(req.body),
     });
 
-    return response.data;
-  } catch (error) {
-    // toast.error(error.response.data);
-    return error.response.data;
+    const data = await response.json();
+    res.status(response.status).json(data);
+  } catch (err) {
+    res.status(500).json({ message: "Something went wrong", error: err.message });
   }
-};
+}
+
 
 export const patchRawData = async (url = "", data = {}) => {
   try {

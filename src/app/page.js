@@ -20,9 +20,9 @@ export default function Home() {
         <ServicesSection />
         <ProcessSection />
         <InnovationSection />
-        <TestimonialSection />
+        {/* <TestimonialSection /> */}
         <CallToAction />
-        <BlogSection paddingClass="py-20 pt-0 px-6 md:px-20" />
+        <BlogSection paddingClass="py-20 pt-0 px-6 md:px-20" limit={3} />
         <Footer />
       </main>
     </>

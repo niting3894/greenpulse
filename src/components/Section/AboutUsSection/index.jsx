@@ -17,14 +17,34 @@ export default function AboutUsSection() {
           </FadeUpSection>
           <div className="flex flex-col md:flex-row justify-between md:items-end gap-6 sm:gap-6 text-center md:text-left">
             <FadeUpSection>
-              <h2 className="text-4xl sm:text-5xl md:text-6xl font-[500] text-gray-900 max-w-2xl mx-auto md:mx-0 w-full">
-                Your Partner in Responsible Waste Disposal
+              <h2 className="text-4xl sm:text-5xl md:text-6xl font-[500] text-gray-900 max-w-2xl mx-auto md:mx-0 w-full mb-5">
+                Your Partner in Responsible Compliance Solution
               </h2>
-            </FadeUpSection>
-            <FadeUpSection>
-              <p className="text-[#8D8D8D] text-[1rem] max-w-sm mx-auto md:mx-0">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit
-                tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo.
+
+              <p className="text-[#8D8D8D] text-[1rem] mx-auto md:mx-0 mb-2">
+                <b>Green Pulse Solution Pvt. Ltd.</b> is a leading environmental
+                consulting and compliance management company committed to
+                enabling sustainable business practices across India.
+                Headquartered in Delhi, we specialize in <b>Extended Producer
+                Responsibility (EPR)</b> compliance for all major waste categories —
+                including <b>Battery Waste, E-Waste, Plastic Waste, Tyre Waste, and
+                Used Oil</b> — and provide end-to-end solutions that align with
+                regulatory frameworks and circular economy goals.
+              </p>
+              <p className="text-[#8D8D8D] text-[1rem] mx-auto md:mx-0 mb-2">
+                We offer integrated services as <b>reverse logistics, waste
+                disposal, ESG advisory, carbon credit services, and
+                environmental consent management.</b> Our mission is to simplify
+                sustainability for businesses by bridging the gap between
+                environmental responsibility and operational efficiency.
+              </p>
+              <p className="text-[#8D8D8D] text-[1rem] mx-auto md:mx-0">
+                With a team of seasoned experts, robust national networks, and
+                tech-enabled systems, Green Pulse Solution ensures timely
+                compliance, transparent reporting, and measurable impact.
+                Whether you are a producer, importer, brand owner, or bulk
+                consumer, we partner with you to navigate the complexities of
+                environmental compliance and help build a greener tomorrow.
               </p>
             </FadeUpSection>
           </div>
@@ -50,7 +70,7 @@ export default function AboutUsSection() {
             <InfoCard
               icon={<FaRecycle />}
               title="Recycling"
-              description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec"
+              // description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec"
             />
 
             <FadeUpSection>
@@ -76,7 +96,7 @@ export default function AboutUsSection() {
             <InfoCard
               icon={<FaTrashAlt />}
               title="Waste Services"
-              description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec"
+              // description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec"
             />
           </div>
         </div>

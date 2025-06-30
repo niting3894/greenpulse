@@ -10,7 +10,7 @@ export default function ServicesPage() {
       <Banner title="Services" backgroundImage="/assets/images/hero-bg.jpg" />
       {/* Your About content here */}
       <ServicesSection />
-      <TestimonialSection />
+      {/* <TestimonialSection /> */}
       <CallToAction />  
       <FaqSection />
     </>

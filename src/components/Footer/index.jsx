@@ -47,7 +47,7 @@ export default function Footer() {
         {/* Logo + Description */}
         <div className="space-y-4 max-w-sm">
           <Image
-            src="/assets/images/logo.png"
+            src="/assets/images/footer-logo.png"
             alt="Tracyle Logo"
             width={200}
             height={60}

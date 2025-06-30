@@ -10,7 +10,7 @@ export default function AboutPage() {
       {/* Your About content here */}
       <AboutUsSection />
       <ValuesSection />
-      <TeamSection />
+      {/* <TeamSection /> */}
     </>
   );
 }
