@@ -55,6 +55,7 @@ export default function Header() {
               ["/about", "About"],
               ["/services", "Services"],
               ["/blog", "Blog"],
+              ["/caseStudy", "Case Study"],
               ["/contact", "Contact"],
             ].map(([href, label]) => (
               <Link

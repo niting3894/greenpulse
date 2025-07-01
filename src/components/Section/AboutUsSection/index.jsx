@@ -22,17 +22,17 @@ export default function AboutUsSection() {
               </h2>
 
               <p className="text-[#8D8D8D] text-[1rem] mx-auto md:mx-0 mb-2">
-                <b>Green Pulse Solution Pvt. Ltd.</b> is a leading environmental
+                <b className="text-gray-500">Green Pulse Solution Pvt. Ltd.</b> is a leading environmental
                 consulting and compliance management company committed to
                 enabling sustainable business practices across India.
-                Headquartered in Delhi, we specialize in <b>Extended Producer
+                Headquartered in Delhi, we specialize in <b className="text-gray-500">Extended Producer
                 Responsibility (EPR)</b> compliance for all major waste categories —
-                including <b>Battery Waste, E-Waste, Plastic Waste, Tyre Waste, and
+                including <b className="text-gray-500">Battery Waste, E-Waste, Plastic Waste, Tyre Waste, and
                 Used Oil</b> — and provide end-to-end solutions that align with
                 regulatory frameworks and circular economy goals.
               </p>
               <p className="text-[#8D8D8D] text-[1rem] mx-auto md:mx-0 mb-2">
-                We offer integrated services as <b>reverse logistics, waste
+                We offer integrated services as <b className="text-gray-500">reverse logistics, waste
                 disposal, ESG advisory, carbon credit services, and
                 environmental consent management.</b> Our mission is to simplify
                 sustainability for businesses by bridging the gap between

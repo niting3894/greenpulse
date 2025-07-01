@@ -14,6 +14,13 @@ import { MdEmail } from "react-icons/md";
 import { HiOutlineMail } from "react-icons/hi";
 
 export default function Footer() {
+  const links = {
+    about: "About",
+    services: "Services",
+    blog: "Blog",
+    caseStudy: "Case Study",
+    contact: "Contact",
+  };
   return (
     <footer className="bg-[#2A4D1F] text-white px-4 sm:px-6 md:px-12 py-20">
       {/* Newsletter Section */}
@@ -75,41 +82,41 @@ export default function Footer() {
 
         {/* Links Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 w-full">
-          {/* Quick Links */}
+
+          {/* Company Links */}
           <div>
             <h4 className="text-3xl font-[600] mb-4">Company</h4>
             <ul className="space-y-3 text-sm">
-              {["about", "services", "blog", "contact"].map((text, i) => (
+              {Object.entries(links).map(([slug, label], i) => (
                 <li key={i}>
                   <Link
-                    href={`/${text}`}
+                    href={`/${slug}`}
                     className="flex items-center gap-2 text-[16px] text-[#E9E9E9] hover:text-[#69cf3d] capitalize"
                   >
                     <FiChevronRight className="text-2xl" />
-                    {text}
+                    {label}
                   </Link>
                 </li>
               ))}
             </ul>
           </div>
 
-          {/* Useful Links */}
-          <div>
-            <h4 className="text-3xl font-[600] mb-4">Legal</h4>
-            <ul className="space-y-3 text-sm">
-              {["Privacy and Policy", "Terms and Conditions"].map((text, i) => (
-                <li key={i}>
-                  <Link
-                    href={`/${text}`}
-                    className="flex items-center gap-2 text-[16px] text-[#E9E9E9] hover:text-[#69cf3d]"
-                  >
-                    <FiChevronRight className="text-2xl" />
-                    {text}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
+          {/* Legal Links (Commented) 
+// <div>
+//   <h4 className="text-3xl font-[600] mb-4">Legal</h4>
+//   <ul className="space-y-3 text-sm">
+//     {["Privacy and Policy", "Terms and Conditions"].map((text, i) => (
+//       <li key={i}>
+//         <Link
+//           href={`/${text}`}
+//           className="flex items-center gap-2 text-[16px] text-[#E9E9E9] hover:text-[#69cf3d]" >
+//           <FiChevronRight className="text-2xl" />
+//           {text}
+//         </Link>
+//       </li>
+//     ))}
+//   </ul>
+// </div> */}
 
           {/* Working Hours */}
           <div>
@@ -124,13 +131,33 @@ export default function Footer() {
                 <p className="break-all">deepakgupta@greenpulsesolution.com</p>
               </li>
               <li className="flex items-center gap-2">
-                <FaGlobe className="text-lg" />
-                <p>www.greenpulsesolution.com</p>
+                <FaGlobe />
+                <p className="break-all">www.greenpulsesolution.com</p>
               </li>
               <li className="flex items-center gap-2">
                 <FaMapMarkerAlt className="text-lg" />
                 <p>Delhi NCR | PAN India Operations</p>
               </li>
+            </ul>
+          </div>
+
+           {/* Why Choose Green Pulse? */}
+          <div>
+            <h4 className="text-3xl font-[600] mb-4">
+              Why Choose Green Pulse?
+            </h4>
+            <ul className="space-y-3 text-sm text-[#E9E9E9]">
+              {[
+                "PAN India Operations",
+                "Industry-Specific Expertise",
+                "Document-to-Delivery Execution",
+                "Transparent, Tech-Enabled Workflow",
+              ].map((point, index) => (
+                <li key={index} className="flex items-start gap-2 text-[16px]">
+                  <FiChevronRight className="text-2xl mt-1" />
+                  <span>{point}</span>
+                </li>
+              ))}
             </ul>
           </div>
         </div>
