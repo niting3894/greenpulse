@@ -1,8 +1,8 @@
 version: "3.8"
 
 services:
-  green_pulse_frontend:
-    container_name: green_pulse_frontend
+  greenpulse_frontend:
+    container_name: greenpulse_frontend
     build:
       context: .
       dockerfile: Dockerfile
